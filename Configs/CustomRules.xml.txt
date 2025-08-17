@@ -1,0 +1,24 @@
+#Custom Rules (`/var/ossec/etc/rules/local_rules.xml`)
+
+<!-- Detect mimikatz.exe execution -->
+<rule id="100002" level="12">
+  <if_group>sysmon_event1</if_group>
+  <field name="win.event.data.originalFileName" type:"pcre2">(?i)mimikatz\.exe<field>
+  <description>Detected Mimikatz execution</description>
+  <group>attack.credential_access, windows, mimikatz,</group>
+</rule>
+
+<!-- Detect outbound/inbound connections and check reputation -->
+<rule id="100010" level="8">
+  <if_sid>60100</if_sid> <!-- Windows network connection log -->
+  <description>Suspicious network connection (to be checked with VirusTotal)</description>
+  <group>network, reputation,</group>
+</rule>
+
+<!-- Alert when IP confirmed as malicious -->
+<rule id="100011" level="12">
+  <if_sid>100010</if_sid>
+  <match>malicious</match>
+  <description>Malicious IP detected by VirusTotal</description>
+  <group>threatintel, ip_block,</group>
+</rule>

@@ -1,0 +1,22 @@
+#stop-mimikatz.ps1 
+
+# Kill mimikatz by original file name or PID
+$processes = Get-Process | Where-Object { $_.Path -like "*mimikatz*" }
+foreach ($proc in $processes) {
+    Write-Output "Killing process Id $($proc.Id) ($($proc.ProcessName))"
+    Stop-Process -Id $proc.Id -Force
+}
+
+#block-ip.ps1
+
+param([string]$ip)
+
+Write-Output "Blocking malicious IP: $ip"
+New-NetFirewallRule -DisplayName "Block-$ip" -Direction Outbound -RemoteAddress $ip -Action Block
+Start-Sleep -Seconds 600
+Remove-NetFirewallRule -DisplayName "Block-$ip"
+
+#stop-mimikatz.bat
+
+@echo off
+powershell.exe -ExecutionPolicy Bypass -File "%~dp0stop-mimikatz.ps1"

@@ -1,0 +1,29 @@
+## Active Response configuration for Wazuh-Manager: /var/ossec/etc/ossec.conf
+
+<!-- Active Response Commands -->
+<command>
+  <name>stop-mimikatz</name>
+  <executable>active-response/bin/stop-mimikatz.bat</executable>
+  <timeout_allowed>no</timeout_allowed>
+</command>
+
+<command>
+  <name>block-ip</name>
+  <executable>active-response/bin/block-ip.ps1</executable>
+  <timeout_allowed>yes</timeout_allowed>
+</command>
+
+<!-- Active Response Mapping -->
+<active-response>
+  <command>stop-mimikatz</command>
+  <location>local</location>
+  <rules_id>100002</rules_id>
+  <timeout>0</timeout>
+</active-response>
+
+<active-response>
+  <command>block-ip</command>
+  <location>local</location>
+  <rules_id>100011</rules_id>
+  <timeout>600</timeout> <!-- temporary block for 10 minutes -->
+</active-response>
