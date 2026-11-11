@@ -17,3 +17,5 @@ Enrichment: Virus Total returned a file report for that SHA256 with a Malicious 
 Ruled Out: Event 10 / rule Id 100012 was powershell openning a handel for mimikatz.exe not a process opening lsass.exe
 
 Call: Authorized lab test, No Containment, Closed.
+
+Notification: Received shuffle email rule 100003, with Host, User, Virustotal Malicious count and SHA256.
