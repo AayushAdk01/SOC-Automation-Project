@@ -19,3 +19,4 @@ Ruled Out: Event 10 / rule Id 100012 was powershell openning a handel for mimika
 Call: Authorized lab test, No Containment, Closed.
 
 Notification: Received shuffle email rule 100003, with Host, User, Virustotal Malicious count and SHA256.
+<img width="641" height="371" alt="image" src="https://github.com/user-attachments/assets/4be18cdd-5244-4f1c-95f1-29f52ab489f7" />
